@@ -6,11 +6,17 @@ struct node{
     struct node *next;
 };
 
-struct node *head;
-struct node *temp;
+struct linkedList{
+    struct node *head;
+    struct node *tail;
+    void (*ptr)(struct linkedList *list, int *value);
 
-void addElement(struct node *newnode, int *value);
-void print(struct node *list);
+};
+void init(struct linkedList *list);
+void addElement(struct linkedList *list, int *value);
+void print(struct linkedList *list);
+void print(struct linkedList *list);
+void cleanMemory(struct linkedList *list);
 
 #endif
     

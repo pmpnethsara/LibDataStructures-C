@@ -2,36 +2,48 @@
 #include<stdlib.h>
 #include "list.h"
 
-void addElement(struct node *newnode, int *value){
-    
-    newnode = (struct node*)malloc(sizeof(struct node));
-    newnode -> data = *value;
-    newnode -> next = NULL;
+void addElement(struct linkedList *list, int *value) {
+    struct node *newnode = (struct node*)malloc(sizeof(struct node));
+    newnode->data = *value;
+    newnode->next = NULL;
 
-    if(head == NULL){
+    if (list->head == NULL) {
+        list->head = newnode;
+        list->tail = newnode;
+    } else {
+        list->tail->next = newnode;
+        list->tail = newnode;
+    }
+}
 
-        head = temp = newnode;
+void print(struct linkedList *list) {
+    struct node *temp1;
+
+    temp1 = list -> head;
+
+    while(temp1 != NULL) {
+
+        printf("%d", temp1 -> data);
+        temp1 = temp1 -> next;
 
     }
-    else
-        temp -> next = newnode;
-        temp = newnode;
+
+}
+void init(struct linkedList *list) {
+
+    list ->head = NULL;
+    list ->tail = NULL;
+    list ->ptr = addElement;
 
 }
 
-void print(struct node *list) {
-
-    temp = head;
-    while(temp != NULL) {
-        printf("%d", temp -> data);
-        temp = temp -> next;
-
+void cleanMemory(struct linkedList *list) {
+    struct node *current = list->head;
+    while (current != NULL) {
+        struct node *next = current->next;
+        free(current);
+        current = next;
     }
-
-}
-void init() {
-
-    head = NULL;
-    temp = NULL;
-
+    list->head = NULL;
+    list->tail = NULL;
 }
