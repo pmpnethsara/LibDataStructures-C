@@ -18,5 +18,9 @@ void print(struct linkedList *list);
 void print(struct linkedList *list);
 void cleanMemory(struct linkedList *list);
 
+void addAtBeginning(struct linkedList *list, int *value);
+
+void addAtEnd(struct linkedList *list, int *value);
+
 #endif
     
