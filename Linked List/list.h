@@ -1,26 +1,24 @@
 #ifndef LIST_H
 #define LIST_H
-    
-struct node{
+
+struct node {
     int data;
     struct node *next;
 };
 
-struct linkedList{
+struct linkedList {
     struct node *head;
     struct node *tail;
-    void (*ptr)(struct linkedList *list, int *value);
-
+    int size;
 };
-void init(struct linkedList *list);
+
 void addElement(struct linkedList *list, int *value);
-void print(struct linkedList *list);
+void init(struct linkedList *list);
+void addAtBeginning(struct linkedList *list, int *value);
+void addAtEnd(struct linkedList *list, int *value);
+void addAtPosition(struct linkedList *list, int *value, int position);
 void print(struct linkedList *list);
 void cleanMemory(struct linkedList *list);
-
-void addAtBeginning(struct linkedList *list, int *value);
-
-void addAtEnd(struct linkedList *list, int *value);
 
 #endif
     

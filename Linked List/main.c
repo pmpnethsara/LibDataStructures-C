@@ -1,5 +1,5 @@
-#include "list.h"
 
+#include "list.h"
 int main() {
     
     struct linkedList list;
@@ -7,6 +7,8 @@ int main() {
     int value1 = 124;
     int value2 = 873;
     int value3 = 4070;
+    int position = 2;
+    int value4 = 200002;
 
     addElement(&list, &value1);
     addElement(&list, &value2);
@@ -17,7 +19,10 @@ int main() {
     addAtBeginning(&list, &value3);
     print(&list);
     
-    addAtEnd(&list, &value2);
+    //addAtEnd(&list, &value2);
+    //print(&list);
+
+    addAtPosition(&list, &value4, position);
     print(&list);
 
     cleanMemory(&list);
