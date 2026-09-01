@@ -88,6 +88,33 @@ void print(struct linkedList *list) {
     printf("\n");
 }
 
+void deleteAtBeginning(struct linkedList *list) {
+        struct node *temp = list -> head;
+        list -> head = list -> head -> next;
+        free(temp);
+        list -> size--;
+
+}
+
+void deleteAtEnd(struct linkedList *list) {
+
+        struct node *currentNode = list -> head;
+        struct node *previousNode;
+        while(currentNode -> next != NULL){
+            previousNode = currentNode;
+            currentNode = currentNode -> next;
+        
+        }
+        if(currentNode != list -> head){
+            previousNode -> next = NULL;
+
+        }
+        free(currentNode);
+        currentNode = NULL;
+                
+
+}
+
 void cleanMemory(struct linkedList *list) {
 
     struct node *current = list -> head;

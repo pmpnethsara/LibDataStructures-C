@@ -19,10 +19,16 @@ int main() {
     addAtBeginning(&list, &value3);
     print(&list);
     
-    //addAtEnd(&list, &value2);
-    //print(&list);
+    addAtEnd(&list, &value2);
+    print(&list);
 
     addAtPosition(&list, &value4, position);
+    print(&list);
+    
+    deleteAtBeginning(&list);
+    print(&list);
+    
+    deleteAtEnd(&list);
     print(&list);
 
     cleanMemory(&list);
