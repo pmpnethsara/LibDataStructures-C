@@ -20,6 +20,7 @@ void addAtPosition(struct linkedList *list, int *value, int position);
 void print(struct linkedList *list);
 void deleteAtBeginning(struct linkedList *list);
 void deleteAtEnd(struct linkedList *list);
+void deleteAtPosition(struct linkedList *list, int position);
 void cleanMemory(struct linkedList *list);
 
 #endif

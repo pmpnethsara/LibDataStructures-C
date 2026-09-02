@@ -30,6 +30,9 @@ int main() {
     
     deleteAtEnd(&list);
     print(&list);
+    
+    deleteAtPosition(&list, position);
+    print(&list);
 
     cleanMemory(&list);
     return 0;

@@ -115,6 +115,25 @@ void deleteAtEnd(struct linkedList *list) {
 
 }
 
+void deleteAtPosition(struct linkedList *list, int position){
+
+        struct node *currentNode = list -> head;
+        struct node *previousNode;
+
+        for(int i = 0; i < position-1; i++){
+            previousNode = currentNode;
+            currentNode = currentNode -> next;
+
+        }
+        
+        previousNode -> next = currentNode -> next;
+
+        free(currentNode);
+        currentNode = NULL;
+        
+    
+}
+
 void cleanMemory(struct linkedList *list) {
 
     struct node *current = list -> head;
