@@ -21,6 +21,7 @@ void print(struct linkedList *list);
 void deleteAtBeginning(struct linkedList *list);
 void deleteAtEnd(struct linkedList *list);
 void deleteAtPosition(struct linkedList *list, int position);
+void reverseList(struct linkedList *list);
 void cleanMemory(struct linkedList *list);
 
 #endif

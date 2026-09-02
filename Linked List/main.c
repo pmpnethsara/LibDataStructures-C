@@ -34,6 +34,10 @@ int main() {
     deleteAtPosition(&list, position);
     print(&list);
 
+    reverseList(&list);
+    print(&list);
+
+
     cleanMemory(&list);
     return 0;
 }

@@ -111,7 +111,7 @@ void deleteAtEnd(struct linkedList *list) {
         }
         free(currentNode);
         currentNode = NULL;
-                
+        list -> size--;                
 
 }
 
@@ -130,8 +130,38 @@ void deleteAtPosition(struct linkedList *list, int position){
 
         free(currentNode);
         currentNode = NULL;
+        list -> size--;                
         
     
+}
+
+void reverseList(struct linkedList *list) {
+
+        struct node *previousNode, *currentNode, *nextNode;
+        previousNode = currentNode = nextNode = list -> head;
+        while(currentNode != NULL) {
+//            if(nextNode == NULL){
+  //              nextNode -> next = currentNode;
+    //            currentNode -> next = NULL;
+      //          previousNode = currentNode;
+        //        currentNode = currentNode -> next;
+
+          //  }
+           // else {
+                nextNode -> next = currentNode;
+
+                currentNode -> next = previousNode;
+                currentNode = currentNode -> next;
+                previousNode = currentNode;
+             
+
+
+//            }
+                
+
+        }
+            list -> head = currentNode;
+
 }
 
 void cleanMemory(struct linkedList *list) {
