@@ -18,9 +18,9 @@ The goal of this project is to implement common data structures from scratch whi
 Currently implemented:
 
 * [x] Linked List
-* [ ] Stack
+* [x] Doubly Linked List
 * [ ] Queue
-* [ ] Doubly Linked List
+* [ ] Stack
 * [ ] Circular Linked List
 * [ ] Binary Search Tree
 * [ ] Heap
