@@ -138,29 +138,30 @@ void deleteAtPosition(struct linkedList *list, int position){
 void reverseList(struct linkedList *list) {
 
         struct node *previousNode, *currentNode, *nextNode;
-        previousNode = currentNode = nextNode = list -> head;
+        previousNode = NULL;
+        currentNode = nextNode = list -> head;
+        list -> tail = list -> head;
         while(currentNode != NULL) {
 //            if(nextNode == NULL){
+  //              currentNode -> next = NULL;
   //              nextNode -> next = currentNode;
     //            currentNode -> next = NULL;
       //          previousNode = currentNode;
         //        currentNode = currentNode -> next;
 
-          //  }
-           // else {
-                nextNode -> next = currentNode;
-
+    //        }
+      //     else {
+                nextNode = currentNode -> next;
                 currentNode -> next = previousNode;
-                currentNode = currentNode -> next;
                 previousNode = currentNode;
-             
+                currentNode = nextNode;
+        //    }
+        //
 
-
-//            }
                 
 
         }
-            list -> head = currentNode;
+            list -> head = previousNode;
 
 }
 

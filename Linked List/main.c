@@ -31,7 +31,7 @@ int main() {
     deleteAtEnd(&list);
     print(&list);
     
-    deleteAtPosition(&list, position);
+//    deleteAtPosition(&list, position);
     print(&list);
 
     reverseList(&list);
