@@ -47,7 +47,7 @@ void print(struct DoublyLinked *list) {
 
 
     }
-
+    printf("\n");
 }
 
 void insertAtBeginning(struct DoublyLinked *list, int *value){
@@ -118,6 +118,58 @@ void insertAtAfterPosition(struct DoublyLinked *list, int position, int *value){
 
 
 }
+
+void deleteAtBeginning(struct DoublyLinked *list){
+
+   struct node *currentNode = list -> head;
+
+   list -> head = currentNode -> next;
+   currentNode -> next -> prev = NULL;
+
+    free(currentNode);
+    currentNode = NULL;
+
+
+}
+
+void deleteAtEnd(struct DoublyLinked *list) {
+
+    struct node *currentNode = list -> tail;
+    list -> tail -> prev -> next = NULL;
+    list -> tail = currentNode -> prev;
+    free(currentNode);
+    currentNode = NULL;
+
+
+}
+
+void deleteAtPosition(struct DoublyLinked *list, int position) {
+
+    struct node *currentNode = list -> head;
+
+    for(int i = 0; i < position -1; i++) {
+
+        currentNode = currentNode -> next;
+
+
+    }
+    currentNode -> prev -> next = currentNode -> next;
+    currentNode -> next -> prev = currentNode -> prev;
+
+    free(currentNode);
+    currentNode = NULL;
+
+
+}
+
+void reverseList(struct DoublyLinked *list) {
+
+    
+
+
+}
+
+
 void memoryClean(struct DoublyLinked *list){
 
         struct node *currentNode = list -> head;

@@ -22,6 +22,9 @@ void insertAtBeginning(struct DoublyLinked *list, int *value);
 void insertAtEnd(struct DoublyLinked *list, int *value);
 void insertAtPosition(struct DoublyLinked *list, int position, int *value);
 void insertAtAfterPosition(struct DoublyLinked *list, int position, int *value);
+void deleteAtBeginning(struct DoublyLinked *list);
+void deleteAtEnd(struct DoublyLinked *list);
+void deleteAtPosition(struct DoublyLinked *list, int position);
 
 #endif
         

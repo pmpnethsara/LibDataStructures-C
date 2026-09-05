@@ -21,15 +21,22 @@ int main() {
 
     insertAtBeginning(&list, &value3);
     print(&list);
-    printf("\n");
 
     insertAtEnd(&list, &value1);
     print(&list);
-    printf("\n");
 
     insertAtPosition(&list, position, &value4);
     print(&list);
-    printf("\n");
+
     insertAtAfterPosition(&list, position, &value4);
+    print(&list);
+
+    deleteAtBeginning(&list);
+    print(&list);
+
+    deleteAtEnd(&list);
+    print(&list);
+
+    deleteAtPosition(&list, position);
     print(&list);
 }
