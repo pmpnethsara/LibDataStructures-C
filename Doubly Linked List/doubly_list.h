@@ -18,6 +18,10 @@ void addElement(struct DoublyLinked *list, int *value);
 
 void init(struct DoublyLinked *list);
 void print(struct DoublyLinked *list);
+void insertAtBeginning(struct DoublyLinked *list, int *value);
+void insertAtEnd(struct DoublyLinked *list, int *value);
+void insertAtPosition(struct DoublyLinked *list, int position, int *value);
+void insertAtAfterPosition(struct DoublyLinked *list, int position, int *value);
 
 #endif
         
