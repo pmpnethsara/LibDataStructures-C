@@ -164,7 +164,23 @@ void deleteAtPosition(struct DoublyLinked *list, int position) {
 
 void reverseList(struct DoublyLinked *list) {
 
-    
+    struct node *currentNode = list -> head;
+    struct node *ptr1 = currentNode -> next;
+    currentNode -> prev = currentNode -> next;
+    currentNode -> next = NULL;
+
+    while(currentNode -> prev != NULL){
+        
+        currentNode = currentNode -> prev;
+        ptr1 = currentNode -> prev;
+        currentNode -> prev = currentNode -> next;
+        currentNode -> next = ptr1;
+        
+
+    }
+
+    list -> head = currentNode;
+
 
 
 }

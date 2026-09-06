@@ -25,6 +25,8 @@ void insertAtAfterPosition(struct DoublyLinked *list, int position, int *value);
 void deleteAtBeginning(struct DoublyLinked *list);
 void deleteAtEnd(struct DoublyLinked *list);
 void deleteAtPosition(struct DoublyLinked *list, int position);
+void reverseList(struct DoublyLinked *list);
+void memoryClean(struct DoublyLinked *list);
 
 #endif
         
