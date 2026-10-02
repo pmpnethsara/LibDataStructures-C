@@ -27,5 +27,15 @@ int main(){
 
 	addPosition(&list, value5, 3);
 	print(&list);
+
+	deleteBeginning(&list);
+	print(&list);
+
+	deleteEnd(&list);
+	print(&list);
+	
+	deletePosition(&list, 3);
+	print(&list);
 	memoryClean(&list);
+
 }

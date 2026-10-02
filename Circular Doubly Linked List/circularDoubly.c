@@ -71,64 +71,136 @@ void addBeginning(struct circularDoubly *list, int value){
 }
 
 void addEnd(struct circularDoubly *list, int value){
-	if(list -> tail == NULL){
-		printf("List is Empty\n");
-		return;
-	}
-	else if(list -> tail == list -> tail -> next){
-		addElement(list, value);
-	}
+    if(list -> tail == NULL){
+	printf("List is Empty\n");
+	return;
+    }
+    else if(list -> tail == list -> tail -> next){
+	addElement(list, value);
+    }
 
-	else{
-		struct node *newNode = malloc(sizeof(struct node));
-		if(newNode == NULL){
-			printf("Allocation is Failed\n");
-			return;
-		}
-		newNode -> data = value;
-		newNode -> prev = list -> tail;
-		newNode -> next = list -> tail -> next;
-		list -> tail -> next -> prev = newNode;
-		list -> tail -> next = newNode;
-		list -> tail = newNode;
-
-		list -> size++;
+    else{
+	struct node *newNode = malloc(sizeof(struct node));
+	if(newNode == NULL){
+	    printf("Allocation is Failed\n");
+	    return;
 	}
+	newNode -> data = value;
+	newNode -> prev = list -> tail;
+	newNode -> next = list -> tail -> next;
+	list -> tail -> next -> prev = newNode;
+	list -> tail -> next = newNode;
+	list -> tail = newNode;
+
+	list -> size++;
+    }
 }
 
 void addPosition(struct circularDoubly *list, int value, int position){
-	if(position > list -> size){
-		printf("Position is out of bound \n");
-		return;
-	}
-	else if(position < 0){
-		printf("Invalid Position\n");
-		return;
-	}
-	
-	else if(position == 1 || position == list -> size){
-		addElement(list, value);
-	}
-	struct node *current = list -> tail -> next;
-	struct node *newNode = malloc(sizeof(struct node));
-		for(int i = 1; i < position - 1; i++){
-			current = current -> next;
-		}
-		newNode -> data = value;
-		newNode -> prev = current;
-		newNode -> next = current -> next;
-		current -> next = newNode;
+    if(position > list -> size + 1){
+	printf("Position is out of bound \n");
+	return;
+    }
+    else if(position < 1){
+	printf("Invalid Position\n");
+	return;
+    }
+
+    else if(position == 1 || position == list -> size + 1){
+	addElement(list, value);
+    }
+    struct node *current = list -> tail -> next;
+    struct node *newNode = malloc(sizeof(struct node));
+    for(int i = 1; i < position - 1; i++){
+	current = current -> next;
+    }
+    newNode -> data = value;
+    newNode -> prev = current;
+    newNode -> next = current -> next;
+    current -> next = newNode;
 
 
-	list -> size++;
-
+    list -> size++;
 
 
 }
 
+void deleteBeginning(struct circularDoubly *list){
 
+    if(list -> tail == NULL){
+	printf("list Empty\n");
+	return;
+    }
+
+    else if(list -> tail -> next == list -> tail -> prev){
+	free(list -> tail);
+	list -> tail =NULL;
+    }
+    else{
+	struct node *temp = list -> tail -> next;
+	list -> tail -> next = list -> tail -> next -> next;
+	list -> tail -> next -> next -> prev = list -> tail;
+
+	free(temp);
+	temp = NULL;
+    }
+    list -> size--;
+}
+void deleteEnd(struct circularDoubly *list){
+
+    if(list -> tail == NULL){
+	printf("List is Empty\n");
+	return;
+    }
+
+    else if(list -> tail == list -> tail -> next){
+	free(list -> tail);
+	list -> tail = NULL;
+    }
+    else{
+	struct node *temp = list -> tail;
+	list -> tail -> prev -> next = list -> tail -> next;
+	list -> tail -> next -> prev = list -> tail -> prev; 
+	list -> tail = list -> tail -> prev;
+	free(temp);
+	temp = NULL;
+    }
+    list -> size--;
+}
+
+void deletePosition(struct circularDoubly *list, int position){
+	if(position < 1){
+		printf("Invalid Position");
+		return;
+	}
+	else if(position == 1){
+		deleteBeginning(list);
+		return;
+	}
+	else if(position == list -> size){
+		deleteEnd(list);
+		return;
+	}
+
+	else{
+		struct node *current = list -> tail -> next;
+		for(int i = 1; i < position -1; i++){
+			current = current -> next;
+		}
+		
+		struct node *temp = current -> next;
+		current -> next = current -> next -> next;
+		current -> next -> next -> prev = current;
+		free(temp);
+		temp = NULL;
+	
+	}
+	list -> size--;
+	
+}
 
 void print(struct circularDoubly *list){
+
     struct node *current = list -> tail -> next;
     do{
 	printf("%d\n", current -> data);
