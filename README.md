@@ -16,12 +16,12 @@ The goal of this project is to implement common data structures from scratch whi
 ## Data Structures
 
 Currently implemented:
-
+* [x] Array
 * [x] Linked List
 * [x] Doubly Linked List
 * [ ] Queue
-* [ ] Stack
-* [ ] Circular Linked List
+* [x] Stack
+* [x] Circular Linked List
 * [ ] Binary Search Tree
 * [ ] Heap
 * [ ] Hash Table
