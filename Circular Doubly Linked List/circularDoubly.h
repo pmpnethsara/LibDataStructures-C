@@ -20,4 +20,7 @@ void print(struct circularDoubly *list);
 void addEnd(struct circularDoubly *list, int value);
 
 void addPosition(struct circularDoubly *list, int value, int position);
+void deleteBeginning(struct circularDoubly *list);
+void deleteEnd(struct circularDoubly *list);
+void deletePosition(struct circularDoubly *list, int position);
 #endif
