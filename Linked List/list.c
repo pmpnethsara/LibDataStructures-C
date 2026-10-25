@@ -3,14 +3,12 @@
 #include "list.h"
 
 void init(struct linkedList *list) {
-
     list->head = NULL;
     list->tail = NULL;
     list->size = 0;
 }
 
 void addElement(struct linkedList *list, void *value) {
-
     struct node *newnode = (struct node*)malloc(sizeof(struct node));
     newnode -> data = value;
     newnode -> next = NULL;
@@ -26,51 +24,49 @@ void addElement(struct linkedList *list, void *value) {
 }
 
 void addAtBeginning(struct linkedList *list, void *value) {
-
     struct node *newnode = (struct node*)malloc(sizeof(struct node));
-
     newnode -> data = value;
     newnode -> next = list->head;
     list -> head = newnode;
+
+   
+    if (list -> tail == NULL) {
+        list -> tail = newnode;
+    }
 
     list -> size++;
 }
 
 void addAtEnd(struct linkedList *list, void *value) {
-
     struct node *newnode = (struct node*)malloc(sizeof(struct node));
-
     newnode -> data = value;
     newnode -> next = NULL;
 
-    list -> tail -> next = newnode;
-    list -> tail = newnode;
+    if (list -> head == NULL) {
+        list -> head = newnode;
+        list -> tail = newnode;
+    } else {
+        list -> tail -> next = newnode;
+        list -> tail = newnode;
+    }
 
     list -> size++;
 }
 
 void addAtPosition(struct linkedList *list, void *value, int position) {
-
-    if (position < 0 || position > list -> size + 1) {
+    if (position < 0 || position > list -> size) {
         printf("Error: Position %d out of bounds (Size: %d)\n", position, list->size);
-    }
-
-    else if (position == 0) {
+    } else if (position == 0) {
         addAtBeginning(list, value);
-    }
-
-    else if (position == list->size) {
+    } else if (position == list->size) {
         addAtEnd(list, value);
-    }
-
-    else{
+    } else {
         struct node *current = list -> head;
         for (int i = 0; i < position - 1; i++) {
             current = current -> next;
         }
 
         struct node *newnode = (struct node*)malloc(sizeof(struct node));
-
         newnode -> data = value;
         newnode -> next = current -> next;
         current -> next = newnode;
@@ -78,44 +74,42 @@ void addAtPosition(struct linkedList *list, void *value, int position) {
     }
 }
 
-/*void print(struct linkedList *list) {
-
-    struct node *current = list -> head;
-
-    while (current != NULL) {
-        printf("%d\n", *(int*)current -> data);
-        current = current -> next;
-    }
-    printf("\n");
-}*/
-
 void deleteAtBeginning(struct linkedList *list) {
-        struct node *temp = list -> head;
-        list -> head = list -> head -> next;
-        free(temp);
-        list -> size--;
+    if (list->head == NULL) return;
 
+    struct node *temp = list -> head;
+    list -> head = list -> head -> next;
+    
+    if (list -> head == NULL) {
+        list -> tail = NULL;
+    }
+    
+    free(temp);
+    list -> size--;
 }
 
 void deleteAtEnd(struct linkedList *list) {
+    if (list->head == NULL) return;
 
+    if (list->head == list->tail) { 
+        free(list->head);
+        list->head = NULL;
+        list->tail = NULL;
+    } else {
         struct node *currentNode = list -> head;
-        struct node *previousNode;
+        struct node *previousNode = NULL;
+        
         while(currentNode -> next != NULL){
             previousNode = currentNode;
             currentNode = currentNode -> next;
+        }
         
-        }
-        if(currentNode != list -> head){
-            previousNode -> next = NULL;
-
-        }
+        previousNode -> next = NULL;
+        list -> tail = previousNode; 
         free(currentNode);
-        currentNode = NULL;
-        list -> size--;                
-
+    }
+    list -> size--;                
 }
-
 
 void deleteAtPosition(struct linkedList *list, int position){
     if (position < 0 || position >= list -> size) {
@@ -143,37 +137,21 @@ void deleteAtPosition(struct linkedList *list, int position){
 }
 
 void reverseList(struct linkedList *list) {
-
-        struct node *previousNode, *currentNode, *nextNode;
-        previousNode = NULL;
-        currentNode = nextNode = list -> head;
-        list -> tail = list -> head;
-        while(currentNode != NULL) {
-//            if(nextNode == NULL){
-  //              currentNode -> next = NULL;
-  //              nextNode -> next = currentNode;
-    //            currentNode -> next = NULL;
-      //          previousNode = currentNode;
-        //        currentNode = currentNode -> next;
-
-    //        }
-      //     else {
-                nextNode = currentNode -> next;
-                currentNode -> next = previousNode;
-                previousNode = currentNode;
-                currentNode = nextNode;
-        //    }
-        //
-
-                
-
-        }
-            list -> head = previousNode;
-
+    struct node *previousNode, *currentNode, *nextNode;
+    previousNode = NULL;
+    currentNode = nextNode = list -> head;
+    list -> tail = list -> head;
+    
+    while(currentNode != NULL) {
+        nextNode = currentNode -> next;
+        currentNode -> next = previousNode;
+        previousNode = currentNode;
+        currentNode = nextNode;
+    }
+    list -> head = previousNode;
 }
 
 void cleanMemory(struct linkedList *list) {
-
     struct node *current = list -> head;
 
     while (current != NULL) {
