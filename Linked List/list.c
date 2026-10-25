@@ -9,10 +9,10 @@ void init(struct linkedList *list) {
     list->size = 0;
 }
 
-void addElement(struct linkedList *list, int *value) {
+void addElement(struct linkedList *list, void *value) {
 
     struct node *newnode = (struct node*)malloc(sizeof(struct node));
-    newnode -> data = *value;
+    newnode -> data = value;
     newnode -> next = NULL;
 
     if (list -> head == NULL) {
@@ -25,32 +25,33 @@ void addElement(struct linkedList *list, int *value) {
     list -> size++;
 }
 
-void addAtBeginning(struct linkedList *list, int *value) {
+void addAtBeginning(struct linkedList *list, void *value) {
 
     struct node *newnode = (struct node*)malloc(sizeof(struct node));
 
-    newnode -> data = *value;
+    newnode -> data = value;
     newnode -> next = list->head;
     list -> head = newnode;
 
     list -> size++;
 }
 
-void addAtEnd(struct linkedList *list, int *value) {
+void addAtEnd(struct linkedList *list, void *value) {
 
     struct node *newnode = (struct node*)malloc(sizeof(struct node));
 
-    newnode -> data = *value;
+    newnode -> data = value;
     newnode -> next = NULL;
 
     list -> tail -> next = newnode;
+    list -> tail = newnode;
 
     list -> size++;
 }
 
-void addAtPosition(struct linkedList *list, int *value, int position) {
+void addAtPosition(struct linkedList *list, void *value, int position) {
 
-    if (position < 0 || position > list -> size) {
+    if (position < 0 || position > list -> size + 1) {
         printf("Error: Position %d out of bounds (Size: %d)\n", position, list->size);
     }
 
@@ -70,23 +71,23 @@ void addAtPosition(struct linkedList *list, int *value, int position) {
 
         struct node *newnode = (struct node*)malloc(sizeof(struct node));
 
-        newnode -> data = *value;
+        newnode -> data = value;
         newnode -> next = current -> next;
         current -> next = newnode;
         list -> size++;
     }
 }
 
-void print(struct linkedList *list) {
+/*void print(struct linkedList *list) {
 
     struct node *current = list -> head;
 
     while (current != NULL) {
-        printf("%d\n", current -> data);
+        printf("%d\n", *(int*)current -> data);
         current = current -> next;
     }
     printf("\n");
-}
+}*/
 
 void deleteAtBeginning(struct linkedList *list) {
         struct node *temp = list -> head;
@@ -115,24 +116,30 @@ void deleteAtEnd(struct linkedList *list) {
 
 }
 
+
 void deleteAtPosition(struct linkedList *list, int position){
+    if (position < 0 || position >= list -> size) {
+        printf("Error: Position %d out of bounds (Size: %d)\n", position, list->size);
+        return;
+    }
 
+    if (position == 0) {
+        deleteAtBeginning(list);
+    } else if (position == list -> size - 1) {
+        deleteAtEnd(list);
+    } else {
         struct node *currentNode = list -> head;
-        struct node *previousNode;
+        struct node *previousNode = NULL;
 
-        for(int i = 0; i < position-1; i++){
+        for(int i = 0; i < position; i++){
             previousNode = currentNode;
             currentNode = currentNode -> next;
-
         }
         
         previousNode -> next = currentNode -> next;
-
         free(currentNode);
-        currentNode = NULL;
         list -> size--;                
-        
-    
+    }
 }
 
 void reverseList(struct linkedList *list) {

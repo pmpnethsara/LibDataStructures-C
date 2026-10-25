@@ -14,28 +14,28 @@ int main() {
     addElement(&list, &value2);
     addElement(&list, &value3);
 
-    print(&list);
+//    print(&list);
 
     addAtBeginning(&list, &value3);
-    print(&list);
+  //  print(&list);
     
     addAtEnd(&list, &value2);
-    print(&list);
+  //  print(&list);
 
     addAtPosition(&list, &value4, position);
-    print(&list);
+  //  print(&list);
     
     deleteAtBeginning(&list);
-    print(&list);
+   // print(&list);
     
     deleteAtEnd(&list);
-    print(&list);
+   // print(&list);
     
-//    deleteAtPosition(&list, position);
-    print(&list);
+   deleteAtPosition(&list, position);
+   // print(&list);
 
     reverseList(&list);
-    print(&list);
+    //print(&list);
 
 
     cleanMemory(&list);

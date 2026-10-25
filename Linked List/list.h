@@ -2,7 +2,7 @@
 #define LIST_H
 
 struct node {
-    int data;
+    void *data;
     struct node *next;
 };
 
@@ -12,12 +12,12 @@ struct linkedList {
     int size;
 };
 
-void addElement(struct linkedList *list, int *value);
+void addElement(struct linkedList *list, void *value);
 void init(struct linkedList *list);
-void addAtBeginning(struct linkedList *list, int *value);
-void addAtEnd(struct linkedList *list, int *value);
-void addAtPosition(struct linkedList *list, int *value, int position);
-void print(struct linkedList *list);
+void addAtBeginning(struct linkedList *list, void *value);
+void addAtEnd(struct linkedList *list, void *value);
+void addAtPosition(struct linkedList *list, void *value, int position);
+//void print(struct linkedList *list);
 void deleteAtBeginning(struct linkedList *list);
 void deleteAtEnd(struct linkedList *list);
 void deleteAtPosition(struct linkedList *list, int position);
