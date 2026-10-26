@@ -8,7 +8,7 @@ void init(struct circularDoubly *list){
 }
 
 
-void addElement(struct circularDoubly *list, int value){
+void addElement(struct circularDoubly *list, void *value){
 
     struct node *newNode = malloc(sizeof(struct node));
     if(newNode == NULL){
@@ -48,7 +48,7 @@ void memoryClean(struct circularDoubly *list){
 
 
 }
-void addBeginning(struct circularDoubly *list, int value){
+void addBeginning(struct circularDoubly *list, void *value){
 
     if(list -> tail == NULL || list -> tail == list -> tail -> next){
 
@@ -70,7 +70,7 @@ void addBeginning(struct circularDoubly *list, int value){
     }
 }
 
-void addEnd(struct circularDoubly *list, int value){
+void addEnd(struct circularDoubly *list, void *value){
     if(list -> tail == NULL){
 	printf("List is Empty\n");
 	return;
@@ -96,7 +96,7 @@ void addEnd(struct circularDoubly *list, int value){
     }
 }
 
-void addPosition(struct circularDoubly *list, int value, int position){
+void addPosition(struct circularDoubly *list, void *value, int position){
     if(position > list -> size + 1){
 	printf("Position is out of bound \n");
 	return;
@@ -203,7 +203,7 @@ void print(struct circularDoubly *list){
 
     struct node *current = list -> tail -> next;
     do{
-	printf("%d\n", current -> data);
+	printf("%d\n",*(int*)(current -> data));
 	current = current -> next;
     }while(current != list ->tail -> next);
 
