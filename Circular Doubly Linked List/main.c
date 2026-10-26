@@ -1,17 +1,19 @@
 #include<stdio.h>
 #include "circularDoubly.h"
 
+//Onlychange the print function depending on the data type you choose 
+
 int main(){
 
 	struct circularDoubly list;
 
 	init(&list);
 
-	int value1 = 34;
-	int value2 = 76;
-	int value3 = 814;
-	int value4 = 77004;
-	int value5 = 44995560;
+	char value1[] = "The Stranger";
+	char value2[] = "Kala Nadee Gala Basi";
+	char value3[] = "White Tiger";
+	char value4[] = "pitastharaya";
+	char value5[] = "Bathtalangunduwa";
 
 	addElement(&list, &value1);
 	addElement(&list, &value2);
@@ -39,3 +41,4 @@ int main(){
 	memoryClean(&list);
 
 }
+

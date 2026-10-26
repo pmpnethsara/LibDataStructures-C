@@ -199,13 +199,15 @@ void deletePosition(struct circularDoubly *list, int position){
 	
 }
 
+//how beauty of coding..., only changing print function
 void print(struct circularDoubly *list){
 
     struct node *current = list -> tail -> next;
     do{
-	printf("%d\n",*(int*)(current -> data));
+	printf("%s\n",(char*)(current -> data));
 	current = current -> next;
     }while(current != list ->tail -> next);
 
     printf("\n\n");
 }
+
