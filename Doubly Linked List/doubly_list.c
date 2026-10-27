@@ -4,11 +4,15 @@
 #include<stdlib.h>
 #include "doubly_list.h"
 
-void addElement(struct DoublyLinked *list, int *value){
+void addElement(struct DoublyLinked *list, void *value){
 
     struct node *newNode = (struct node*)malloc(sizeof(struct node));
+    if(newNode = NULL){
+	printf("Allocation is Failed\n");
+	return;
+    }
 
-    newNode -> data = *value;
+    newNode -> data = value;
     newNode -> next = NULL;
     
     if(list -> head == NULL){
@@ -32,7 +36,6 @@ void init(struct DoublyLinked *list) {
 
     list -> head = NULL;
     list -> tail = NULL;
-    list -> add = addElement;
     list -> size = 0;
 
 }
@@ -50,25 +53,37 @@ void print(struct DoublyLinked *list) {
     printf("\n");
 }
 
-void insertAtBeginning(struct DoublyLinked *list, int *value){
-
+void insertAtBeginning(struct DoublyLinked *list, void *value){
+	
     struct node *newNode = (struct node*)malloc(sizeof(struct node));
-    newNode -> data = *value;
+    if(newNode = NULL){
+	printf("Allocation is Failed\n");
+	return;
+    }
+    
+    newNode -> data = value;
     newNode -> prev = NULL;
+    list -> head = newNode;
+
+	if(list -> head = NULL){
+		list -> head -> next = NULL;
+		list -> tail = newNode;
+	}
+	else{
     newNode -> next = list -> head;
     list -> head -> prev = newNode;
-    list -> head = newNode;
+	}
     list -> size++;
 
 }
 
-void insertAtEnd(struct DoublyLinked *list, int *value){
+void insertAtEnd(struct DoublyLinked *list, void *value){
 
     struct node *newNode = (struct node*)malloc(sizeof(struct node));
     list -> tail -> next = newNode;
     newNode -> prev = list -> tail;
     newNode -> next = NULL;
-    newNode -> data = *value;
+    newNode -> data = value;
 
     list -> tail = newNode;
 
@@ -77,7 +92,7 @@ void insertAtEnd(struct DoublyLinked *list, int *value){
 
 }
 
-void insertAtPosition(struct DoublyLinked *list, int position, int *value){
+void insertAtPosition(struct DoublyLinked *list, int position, void *value){
 
     struct node *newNode = (struct node*)malloc(sizeof(struct node));
     struct node *currentNode = list -> head;
@@ -87,7 +102,7 @@ void insertAtPosition(struct DoublyLinked *list, int position, int *value){
         currentNode = currentNode -> next;
 
     }
-    newNode -> data = *value;
+    newNode -> data = value;
     newNode -> next = currentNode;
     newNode -> prev = currentNode -> prev;
     currentNode -> prev -> next = newNode;
@@ -98,7 +113,7 @@ void insertAtPosition(struct DoublyLinked *list, int position, int *value){
 
 }
 
-void insertAtAfterPosition(struct DoublyLinked *list, int position, int *value){
+void insertAtAfterPosition(struct DoublyLinked *list, int position, void *value){
 
     struct node *newNode = (struct node*)malloc(sizeof(struct node));
     struct node *currentNode = list -> head;
@@ -108,7 +123,7 @@ void insertAtAfterPosition(struct DoublyLinked *list, int position, int *value){
         currentNode = currentNode -> next;
 
     }
-    newNode -> data = *value;
+    newNode -> data = value;
     newNode -> next = currentNode;
     newNode -> prev = currentNode -> prev;
     currentNode -> prev -> next = newNode;
